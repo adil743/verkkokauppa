@@ -2,6 +2,7 @@ import "./etusivu.css";
 import ModalReg from "../modal/modalreg";
 import { useState } from "react";
 import { Link } from 'react-router-dom';
+import Footer from "../footer/footer";
 
 export default function Etusivu() {
     const [open, setOpen] = useState(false);
@@ -67,13 +68,8 @@ export default function Etusivu() {
       </section>
 
       <ModalReg open={open} onClose={() => setOpen(false)} />
-
-      <footer className="footer">
-        <p>© OPISKELIJA 2026</p>
-        <p>Adil Akhmetov</p>
-        <p>Omnia</p>
-      </footer>
-
+      
+      <Footer />
     </div>
   );
 }

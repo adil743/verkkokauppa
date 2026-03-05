@@ -1,6 +1,8 @@
 import "./mainpage.css";
 import { useEffect, useState } from "react";
-
+import { Link } from "react-router-dom";
+import Footer from "../footer/footer";
+ 
 export default function MainPage() {
   const [products, setProducts] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -32,11 +34,13 @@ export default function MainPage() {
     <div className="page">
 
       <header className="navbar">
-        <div className="logo">LOGO</div>
+        <div className="logo">Tuottajamarket</div>
 
         <div className="nav-right">
           <div className="cart"><i className="fi fi-rr-shopping-cart"></i></div>
-          <div className="home">Etusivu</div>
+          <Link to="/">
+            <div className="home">Etusivu</div>
+          </Link>
         </div>
       </header>
 
@@ -60,7 +64,7 @@ export default function MainPage() {
       <div>
         <div className="cards">
           {filteredProducts.map(product => (
-            <div className="card" key={product.id}>
+            <div className="product-card" key={product.id}>
                 <div className="card-top">
                     <h3>{product.name}</h3>
                     <span>Luokka {product.category_id}</span>
@@ -76,10 +80,7 @@ export default function MainPage() {
         </div>
       </div>
 
-      <footer>
-          Adil Akhmetov
-          Omnia
-      </footer>
+       <Footer />
     </div>
   );
 }

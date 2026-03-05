@@ -32,6 +32,8 @@
 .home {
   font-size: 20px;
   cursor: pointer;
+  color: black;
+  text-decoration: none;
 }
 
 
@@ -49,6 +51,7 @@ h1 {
 
   border-radius: 15px;
   border: 1px solid #ccc;
+  font-size: 14px;
 }
 
 .luokat {
@@ -89,7 +92,7 @@ h1 {
   justify-content: center;
 }
 
-.card {
+.product-card {
   background: #f5f5f545;
   border-radius: 20px;
   border: 1px solid #dcdcdc;
@@ -112,7 +115,7 @@ h1 {
   color: #777;
 }
 
-.card-top p {
+.product-card p {
   font-size: 12px;
   color: #888;
   margin: 6px 0 0 0;
@@ -130,7 +133,7 @@ h1 {
   font-weight: bold;
 }
 
-.card button {
+.product-card button {
   background: #7b7b7b;
   border: none;
   color: white;
@@ -140,20 +143,6 @@ h1 {
   cursor: pointer;
 }
 
-.card button:hover {
+.product-card button:hover {
   background: #5f5f5f;
-}
-
-
-footer {
-  margin-top: 60px;
-  padding: 25px 40px;
-  border-top: 1px solid #e5e5e5;
-
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-
-  font-size: 14px;
-  color: #777;
 }
