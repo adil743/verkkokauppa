@@ -46,11 +46,11 @@ export default function Etusivu() {
 
         <div className="grid">
           {kaikki.map((step, index) => (
-            <div key={index} className="card">
+            <div key={index} className="step-card">
                 { step.title === "Rekisteröityminen" ? (
                     <button type="button" className="card-icon" onClick={() => setOpen(true)}><i className={step.icon}></i></button>
                 ) : step.title === "Selaa tuotteita" ? (
-                    <Link to="/kauppa">
+                    <Link to="/mainpage#search">
                         <button type="button" className="card-icon"><i className={step.icon}></i></button> 
                     </Link>
                 ) : (

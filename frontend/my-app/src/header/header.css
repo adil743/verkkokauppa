@@ -1,0 +1,48 @@
+.nav-right {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.cart {
+  font-size: 20px;
+  cursor: pointer;
+  color: black;
+}
+
+a {
+  text-decoration: none;
+}
+
+.home {
+  font-size: 20px;
+  cursor: pointer;
+  color: black;
+}
+
+
+.logo {
+  font-size: 30px;
+  font-weight: bold;
+  color: #2f7a3e;
+}
+
+.logo:hover {
+  color: #256633;
+}
+
+.cart:hover {
+  color: #2f7a3e;
+}
+
+.home:hover {
+  color: #2f7a3e;
+}

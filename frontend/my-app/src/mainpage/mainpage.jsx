@@ -2,10 +2,19 @@ import "./mainpage.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../footer/footer";
+import Header from "../header/header";
  
 export default function MainPage() {
   const [products, setProducts] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [search, setSearch] = useState("");
+
+  const [selectedCart, setSelectedCart] = useState(() => {
+    const saved = localStorage.getItem("cart");
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  console.log(selectedCart)
 
   useEffect(() => {
     const cardProducts = async () => {
@@ -18,37 +27,39 @@ export default function MainPage() {
     cardProducts();
   }, []);
 
+  
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(selectedCart));
+  }, [selectedCart]);
+
   const categories = (id) => {
     if(selectedCategories.includes(id)) {
       setSelectedCategories(selectedCategories.filter(c => c !== id));
-    } else {
+    } else { 
       setSelectedCategories([...selectedCategories, id]);
     }
   }
 
-  const filteredProducts = selectedCategories.length === 0
-    ? products
-    : products.filter(product => selectedCategories.includes(product.category_id));
+    
+    const filteredProducts = selectedCategories.length === 0
+      ? products
+      : products.filter(product => selectedCategories.includes(product.category_id));
+   
+    const filterSearch = search.length !== 0
+      ? filteredProducts.filter(product => product.name.toLowerCase().includes(search.toLowerCase()))
+      : filteredProducts;
 
   return (
     <div className="page">
 
-      <header className="navbar">
-        <div className="logo">Tuottajamarket</div>
 
-        <div className="nav-right">
-          <div className="cart"><i className="fi fi-rr-shopping-cart"></i></div>
-          <Link to="/">
-            <div className="home">Etusivu</div>
-          </Link>
-        </div>
-      </header>
-
+      <Header /> 
 
       <div className="maincon">
         <h1>Verkkokauppa</h1>
         <div className="search">
-          <input type="search" placeholder="Etsi tuotteita" />
+          <input type="search" value={search} id="search" placeholder="Etsi tuotteita" autoFocus={true} onChange={(e) => setSearch(e.target.value)}/>
         </div>
         <div className="luokat">
           <label><input type="checkbox" /> Kaikki</label>
@@ -63,7 +74,7 @@ export default function MainPage() {
 
       <div>
         <div className="cards">
-          {filteredProducts.map(product => (
+          {filterSearch.map(product => (
             <div className="product-card" key={product.id}>
                 <div className="card-top">
                     <h3>{product.name}</h3>
@@ -73,7 +84,9 @@ export default function MainPage() {
 
                 <div className="card-bottom">
                     <span className="price">{product.prize}€</span>
-                    <button type="button">Osta</button>
+                    <button type="button" className={selectedCart.some(item => item.id === product.id) ? "card-button-true" : "card-button-false"} onClick={() => 
+                      { if(!selectedCart.some(item => item.id === product.id)){
+                       setSelectedCart([...selectedCart, {id: product.id, qty: 1}]) }}}>{selectedCart.some(item => item.id === product.id) ? "On ostoskorissa" : "Osta"}</button>
                 </div>
             </div>
           ))}
