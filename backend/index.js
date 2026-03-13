@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import { pool } from "./db.js";
 import productsRouter from "./products.js";
+import regRouter from "./reg.js";
 import cors from "cors";
 
 dotenv.config();
@@ -11,6 +12,7 @@ app.use(express.json());
 app.use(cors()); 
 
 app.use("/products", productsRouter);
+app.use("/reg", regRouter)
 
 app.listen(5050, () => {
     console.log("Server running on port 5050");
